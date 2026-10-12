@@ -24,8 +24,8 @@ On first start the mod writes `MainMod.cfg` next to its DLL (for a Workshop inst
 ### Speed cap
 | Setting | Default | What it does |
 |---|---|---|
-| `MaxCompression` | 500 | Highest speed of the `-` / `=` keys (game: 100). Snaps to 100, 200, 300, 500, 1000, 2000, 3000, 5000. |
-| `FlightDeckLimit` | 0 | Speed the game forces during real deck work (game: 30). 0 = keep the game's value; a higher number lifts it. |
+| `MaxCompression` | 500 | Highest speed of time compression (game: 100). Snaps to 100, 200, 300, 500, 1000, 2000, 3000, 5000. |
+| `FlightDeckLimit` | 0 | Max speed the game forces during real deck work (game: 30). 0 = keep the game's value; a higher number lifts it. |
 
 ### Combat slowdown
 Replaces the game's "any weapon anywhere = 20x" with distance rules. Time drops to the speed below and is never raised again automatically.
@@ -62,7 +62,7 @@ Above the threshold, deck sequences that get stuck at high compression are compl
 | `InstantLanding` | true | Above `InstantLandingAbove`, returning aircraft skip approach, arrest, taxi and elevator. |
 | `InstantLandingAbove` | 30 | Speed above which landings are skipped. |
 
-### Performance
+### Performance (Dangerous)
 | Setting | Default | What it does |
 |---|---|---|
 | `AdaptiveFixedStep` | true | Let the simulation step grow when the simulation loop is the bottleneck (fewer, bigger steps = less lag, coarser movement). |
