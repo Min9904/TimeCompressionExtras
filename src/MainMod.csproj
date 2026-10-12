@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>MainMod</AssemblyName>
+    <RootNamespace>MainMod</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>11.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- game root = two levels up from MainMod/src -->
+    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)../../</GameRoot>
+    <Managed>$(GameRoot)Sea Power_Data/Managed/</Managed>
+    <!-- Steam Workshop item 3380210757 (AnchorChain), normally steamapps/workshop/content/1286220/3380210757 -->
+    <AnchorChainDir Condition="'$(AnchorChainDir)' == ''">$(GameRoot)../../workshop/content/1286220/3380210757/</AnchorChainDir>
+    <!-- build straight into the folder the game scans for local mods -->
+    <OutDir>$(GameRoot)Sea Power_Data/StreamingAssets/MainMod/</OutDir>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>none</DebugType>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AnchorChain"><HintPath>$(AnchorChainDir)AnchorChain.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BepInEx"><HintPath>$(GameRoot)BepInEx/core/BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(GameRoot)BepInEx/core/0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Seapower-Scripts"><HintPath>$(Managed)Seapower-Scripts.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(Managed)UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(Managed)UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UniRx"><HintPath>$(Managed)UniRx.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_info.ini" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

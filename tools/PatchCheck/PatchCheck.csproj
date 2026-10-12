@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)../../../</GameRoot>
+    <GameManaged>$(GameRoot)Sea Power_Data/Managed/</GameManaged>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- BepInEx's HarmonyX does not initialise on .NET 8 (AccessTools cctor), the official Harmony does and checks the
+         same things we care about (target resolution, injected parameter names, patch signatures). -->
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(GameManaged)Seapower-Scripts.dll')">
+    <Reference Include="Seapower-Scripts"><HintPath>$(GameManaged)Seapower-Scripts.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameManaged)UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UniRx"><HintPath>$(GameManaged)UniRx.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
