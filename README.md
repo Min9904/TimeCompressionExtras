@@ -79,8 +79,6 @@ Above the threshold, deck sequences that get stuck at high compression are compl
 ## Known limits
 
 - Above 20x the game's weapons lose accuracy (bomb steering, shell fuze timing, seekers that look once per step). The combat slowdown protects against that; it does not fix it.
-- Land-base (runway) launches were seen working; runway landings are untested.
-- Aircraft queued on a deck cannot be cancelled in the game (only orders that have not spawned yet can be aborted), so a long `LaunchDelaySeconds` keeps more of them committed.
 - With the adaptive step, movement is coarser at high compression.
 
 ## Building
