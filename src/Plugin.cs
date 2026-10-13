@@ -135,6 +135,7 @@ internal static class Plugin
             "would otherwise hold time at CombatSpeed for as long as it stays there; a helicopter that fires something still triggers the munition rule).");
 
         Performance.Bind(_config);
+        HoldingSkip.Bind(_config);
         Sonobuoys.Bind(_config);
         Dipping.Bind(_config);
 
