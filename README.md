@@ -13,7 +13,7 @@ Players do not need the .NET SDK; it is only needed to build from source.
 
 ## Settings
 
-On first start the mod writes `MainMod.cfg` next to its DLL (for a Workshop install: `steamapps/workshop/content/1286220/<item id>/TimeCompressionExtras/`). It is re-read at the start of every mission. Every setting has a one-line comment in the file. Units: `x` = time compression, `nm` = nautical miles, `ft` = feet, `s` = seconds of game time.
+On first start the mod writes `MainMod.cfg` next to its DLL (for a Workshop install: `steamapps/workshop/content/1286220/3818429813/TimeCompressionExtras/`). It is re-read at the start of every mission. Every setting has a one-line comment in the file. Units: `x` = time compression, `nm` = nautical miles, `ft` = feet, `s` = seconds of game time.
 
 ### General
 | Setting | Default | What it does |
