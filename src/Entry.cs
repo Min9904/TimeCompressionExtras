@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MainMod;
 
-[ACPlugin(Entry.Guid, "Time compression extras", "0.7.0")]
+[ACPlugin(Entry.Guid, "Time compression extras", "0.8.0")]
 public class Entry : IAnchorChainMod
 {
     public const string Guid = "local.mainmod";

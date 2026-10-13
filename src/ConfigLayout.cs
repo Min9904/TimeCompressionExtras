@@ -75,6 +75,17 @@ internal static class ConfigLayout
         S(a, "InstantLanding", Bool, "Above InstantLandingAbove returning aircraft skip approach, arrest, taxi and elevator (recovered normally, no loss)");
         S(a, "InstantLandingAbove", "x", "Speed above which landings are skipped");
 
+        const string b = "Sonobuoys";
+        S(b, "DropOnTheSpot", Bool, "Above SonobuoyDropAbove an aircraft releases a buoy on the drop point as soon as it is near it, instead of lining up on it (it circles the point forever at high speed)");
+        S(b, "SonobuoyDropAbove", "x", "Speed above which buoys are released on the spot; at or below it the game's own drop logic is used");
+        S(b, "SonobuoyDropRadiusNm", "nm", "How close the aircraft must be to the drop point at SonobuoyDropAbove before the buoy is released");
+        S(b, "SonobuoyDropMaxRadiusNm", "nm", "The release radius grows with the speed (radius x speed / SonobuoyDropAbove) up to this limit; the aircraft always has to get this close first");
+
+        const string d = "Dipping";
+        S(d, "DipHelicopters", Bool, "Above DipSimpleAbove a helicopter with a dipping-sonar order uses the game's simple movement (it circles the dip point forever with its physics at high speed)");
+        S(d, "DipSimpleAbove", "x", "Speed above which a dipping helicopter uses the simple movement; at or below it the game's own physics is used");
+        S(d, "DipRadiusNm", "nm", "A dip waypoint counts as reached when the helicopter is this close; 0 = only the game's own tolerance");
+
         const string p = "Performance";
         H(p, "Simple physics");
         S(p, "SimplePhysicsAbove", "x", "Above this speed aircraft, helicopters, submarines and animals use the game's simple movement; 0 = game's values");

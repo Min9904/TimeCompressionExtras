@@ -12,7 +12,7 @@ namespace MainMod;
 
 internal static class Plugin
 {
-    internal const string Version = "0.7.0";
+    internal const string Version = "0.8.0";
     internal const string ConfigFileName = "MainMod.cfg";
 
     internal static ManualLogSource Log = Logger.CreateLogSource("MainMod");
@@ -135,6 +135,8 @@ internal static class Plugin
             "would otherwise hold time at CombatSpeed for as long as it stays there; a helicopter that fires something still triggers the munition rule).");
 
         Performance.Bind(_config);
+        Sonobuoys.Bind(_config);
+        Dipping.Bind(_config);
 
         InstantLaunch = _config.Bind("AirOps", "InstantLaunch", true,
             "Above InstantLaunchAbove compression, aircraft skip the elevator / taxi / catapult sequence (which gets stuck at high compression) " +

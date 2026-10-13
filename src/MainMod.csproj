@@ -24,6 +24,7 @@
     <Reference Include="Seapower-Scripts"><HintPath>$(Managed)Seapower-Scripts.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(Managed)UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(Managed)UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ParadoxNotion"><HintPath>$(Managed)ParadoxNotion.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UniRx"><HintPath>$(Managed)UniRx.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
   <ItemGroup>
