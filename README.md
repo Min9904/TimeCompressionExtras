@@ -61,6 +61,7 @@ Above the threshold, deck sequences that get stuck at high compression are compl
 | `LaunchDelayAiDecks` | true | The gap also applies to enemy / AI decks. |
 | `InstantLanding` | true | Above `InstantLandingAbove`, returning aircraft skip approach, arrest, taxi and elevator. |
 | `InstantLandingAbove` | 30 | Speed above which landings are skipped. |
+| `SkipHoldingPattern` | true | Above `InstantLandingAbove`, returning aircraft skip the holding pattern queue and the landing circuit and ask for a landing spot at once. |
 
 ### Performance (Dangerous)
 | Setting | Default | What it does |

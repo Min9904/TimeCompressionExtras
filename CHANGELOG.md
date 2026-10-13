@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.8.0
+- New: returning aircraft skip the holding pattern and the landing circuit above `InstantLandingAbove` (`SkipHoldingPattern`). They used to queue and fly laps one at a time, which crawls at high compression; the game's landing intervals and runway / elevator choice still apply.
 - Fix: sonobuoys can be laid at high time compression. Above 20x the aircraft could not line up on the drop point and circled it forever; it now releases the buoy on the spot once it is near (1 nm at 20x, growing with the speed up to 10 nm; the aircraft always has to get near first). Helicopters and fixed-wing aircraft have separate settings (helicopters: 0.5 nm, up to 3 nm). Settings in `[Sonobuoys]`.
 - Fix: helicopters circled the dipping-sonar point forever at high time compression. Above 20x a helicopter with a dip order now uses the game's simple movement model (flies straight to the point and holds still), and the dip waypoint counts as reached within 0.3 nm. Settings in `[Dipping]`.
 

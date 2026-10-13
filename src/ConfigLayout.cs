@@ -74,6 +74,7 @@ internal static class ConfigLayout
         H(a, "Instant landing");
         S(a, "InstantLanding", Bool, "Above InstantLandingAbove returning aircraft skip approach, arrest, taxi and elevator (recovered normally, no loss)");
         S(a, "InstantLandingAbove", "x", "Speed above which landings are skipped");
+        S(a, "SkipHoldingPattern", Bool, "Above InstantLandingAbove returning aircraft do not queue in the holding pattern or fly the landing circuit; they ask for a landing spot at once");
 
         const string b = "Sonobuoys";
         S(b, "DropOnTheSpot", Bool, "Above SonobuoyDropAbove a fixed-wing aircraft releases a buoy on the drop point as soon as it is near it, instead of lining up on it (it circles the point forever at high speed)");
