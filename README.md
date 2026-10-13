@@ -72,16 +72,26 @@ Above the threshold, deck sequences that get stuck at high compression are compl
 | `SimplePhysicsAbove` | 0 | Above this speed aircraft, helicopters, submarines and animals use the game's simple movement. 0 = game's own physics. |
 | `Profile` / `ProfileIntervalSeconds` | false / 10 | Write a frame-time breakdown to the log every N seconds (for finding lag causes). |
 
-### Sonobuoys and dipping sonar
-At high compression an aircraft cannot line up on a sonobuoy drop point, and a helicopter's hover controller no longer settles on a dip point, so both circle the point forever. These two fixes make them work again. They apply to your units and AI units. Sections `[Sonobuoys]` and `[Dipping]` in `MainMod.cfg`.
-
+### Sonobuoys (fixed-wing)
 | Setting | Default | What it does |
 |---|---|---|
-| `DropOnTheSpot` | true | Above `SonobuoyDropAbove`, an aircraft ordered to lay a buoy releases it right on the drop point as soon as it is near (the buoy still falls and deploys normally). false = the game's own drop logic. |
+| `DropOnTheSpot` | true | Above `SonobuoyDropAbove`, an aircraft ordered to lay a buoy releases it right on the drop point once it is near; false = the game's own drop logic. |
 | `SonobuoyDropAbove` | 20 | Speed above which buoys are released on the spot. |
 | `SonobuoyDropRadiusNm` | 1 | How close the aircraft must be to the drop point at `SonobuoyDropAbove`. |
-| `SonobuoyDropMaxRadiusNm` | 10 | The radius grows with the speed (radius x speed / `SonobuoyDropAbove`) up to this limit; the aircraft always has to get this close first. |
-| `DipHelicopters` | true | Above `DipSimpleAbove`, a helicopter with a dipping-sonar order (or its dipping sonar on) uses the game's simple movement: straight to the point, then holds still. Other helicopters are unaffected. false = the game's own behaviour. |
+| `SonobuoyDropMaxRadiusNm` | 10 | The radius grows with the speed (radius x speed / `SonobuoyDropAbove`) up to this limit. |
+
+### Sonobuoys (helicopters)
+| Setting | Default | What it does |
+|---|---|---|
+| `HelicopterDropOnTheSpot` | true | Above `HelicopterDropAbove`, a helicopter ordered to lay a buoy releases it right on the drop point once it is near; false = the game's own drop logic. |
+| `HelicopterDropAbove` | 20 | Speed above which buoys are released on the spot. |
+| `HelicopterDropRadiusNm` | 0.5 | How close the helicopter must be to the drop point at `HelicopterDropAbove`. |
+| `HelicopterDropMaxRadiusNm` | 3 | The radius grows with the speed (radius x speed / `HelicopterDropAbove`) up to this limit. |
+
+### Dipping sonar (helicopters)
+| Setting | Default | What it does |
+|---|---|---|
+| `DipHelicopters` | true | Above `DipSimpleAbove`, a helicopter with a dipping-sonar order (or its dipping sonar on) uses the game's simple movement: straight to the point, then holds still. false = the game's own behaviour. |
 | `DipSimpleAbove` | 20 | Speed above which a dipping helicopter uses the simple movement. |
 | `DipRadiusNm` | 0.3 | A dip waypoint counts as reached within this distance; 0 = only the game's own tolerance. |
 

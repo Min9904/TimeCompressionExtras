@@ -76,10 +76,14 @@ internal static class ConfigLayout
         S(a, "InstantLandingAbove", "x", "Speed above which landings are skipped");
 
         const string b = "Sonobuoys";
-        S(b, "DropOnTheSpot", Bool, "Above SonobuoyDropAbove an aircraft releases a buoy on the drop point as soon as it is near it, instead of lining up on it (it circles the point forever at high speed)");
+        S(b, "DropOnTheSpot", Bool, "Above SonobuoyDropAbove a fixed-wing aircraft releases a buoy on the drop point as soon as it is near it, instead of lining up on it (it circles the point forever at high speed)");
         S(b, "SonobuoyDropAbove", "x", "Speed above which buoys are released on the spot; at or below it the game's own drop logic is used");
         S(b, "SonobuoyDropRadiusNm", "nm", "How close the aircraft must be to the drop point at SonobuoyDropAbove before the buoy is released");
         S(b, "SonobuoyDropMaxRadiusNm", "nm", "The release radius grows with the speed (radius x speed / SonobuoyDropAbove) up to this limit; the aircraft always has to get this close first");
+        S(b, "HelicopterDropOnTheSpot", Bool, "The same for helicopters, with their own settings (they fly slower and turn tighter)");
+        S(b, "HelicopterDropAbove", "x", "Speed above which helicopters release buoys on the spot");
+        S(b, "HelicopterDropRadiusNm", "nm", "How close a helicopter must be to the drop point at HelicopterDropAbove");
+        S(b, "HelicopterDropMaxRadiusNm", "nm", "Upper limit of the helicopter release radius, which grows with the speed");
 
         const string d = "Dipping";
         S(d, "DipHelicopters", Bool, "Above DipSimpleAbove a helicopter with a dipping-sonar order uses the game's simple movement (it circles the dip point forever with its physics at high speed)");
