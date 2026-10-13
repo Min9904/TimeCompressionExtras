@@ -3,3 +3,7 @@ obj/
 *.user
 *.cfg
 *.dll
+pending/
+.vs/
+.vscode/
+*.zip
