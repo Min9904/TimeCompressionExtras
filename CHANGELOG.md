@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+- Sonobuoys: an "Auto" attack waypoint (the game's new auto-attack, in the new-map release) is left to the game.
+- Sonobuoys: a buoy released on the spot over land is destroyed on the ground instead of deploying there.
+- Works on 0.8.7 and on the new-map release.
+
 ## 0.8.0
 - New: returning aircraft skip the holding pattern and the landing circuit above `InstantLandingAbove` (`SkipHoldingPattern`). They used to queue and fly laps one at a time, which crawls at high compression; the game's landing intervals and runway / elevator choice still apply.
 - Fix: sonobuoys can be laid at high time compression. Above 20x the aircraft could not line up on the drop point and circled it forever; it now releases the buoy on the spot once it is near (1 nm at 20x, growing with the speed up to 10 nm; the aircraft always has to get near first). Helicopters and fixed-wing aircraft have separate settings (helicopters: 0.5 nm, up to 3 nm). Settings in `[Sonobuoys]`.

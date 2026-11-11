@@ -105,6 +105,9 @@ internal static class Sonobuoys
     /// <summary>Prefix of AttackAtWaypoint.OnUpdate: true = let the game run its own update.</summary>
     internal static bool WaypointUpdate(AttackAtWaypoint task)
     {
+        // "Auto" = the game's auto-attack waypoint (LCC / globe builds, AttackAtWaypoint.IsAutoAttack): it picks the weapon and
+        // triggers on the waypoint tolerance itself - leave it to the game
+        if (string.Equals(task._ammunitionName, "Auto", StringComparison.OrdinalIgnoreCase)) return true;
         if (!IsBuoy(task._ammo) || task._baseObject == null || !task._baseObject.IsAirUnit || !On(task._baseObject)) return true;
         if (GameTime.IsPaused()) return true;
 
@@ -157,7 +160,16 @@ internal static class Sonobuoys
         p.z = target.z;
         buoy.transform.position = p;
         buoy._velocityVecInUnity = new Vector3(0f, buoy._velocityVecInUnity.y, 0f);
-        buoy.setGeoPosition(Utils.worldPositionFromUnityToLongLat(p, Globals._currentCenterTile));
+        GeoPosition geo = Utils.worldPositionFromUnityToLongLat(p, Globals._currentCenterTile);
+        buoy.setGeoPosition(geo);
+
+        // a drop point on land: the buoy is destroyed on the ground there, as one that falls onto land in a normal drop (user
+        // 2026-10-27). The game's own collision sweep is not relied on: the buoy was moved sideways, not flown there.
+        // (-10000 = the game's "no height here": terrain off or not loaded - treated as sea)
+        float ground = float.MinValue;
+        try { ground = TerrainUtils.GetHeightAt(geo); }
+        catch (Exception e) { Plugin.LogOnce("sonobuoy-terrain", e); }
+        bool onLand = ground > 0f;
 
         // close the engage task the way WeaponSystemHardpoint.ExecuteLaunch does after the last shot
         hp.EndEngageTask(true);
@@ -167,6 +179,16 @@ internal static class Sonobuoys
         _isLaunchingSalvo.SetValue(hp, false);
         _currentShotInSalvo.SetValue(hp, 0);
         hp._lastLaunchTime = GameTime.missionElapsedTime;
+
+        if (onLand)
+        {
+            Vector3 at = new Vector3(p.x, ground, p.z);
+            buoy.transform.position = at;
+            DM.Log(buoy.FullIDData() + " is destroyed by collision with Terrain", DM.EventLogFilters.Destruction);
+            buoy.Destruction(at, buoy.transform.rotation, null);
+            Plugin.Log.LogInfo($"Sonobuoy: {carrier.getUIDAndName()} dropped {buoy.getUIDAndName()} on land ({ground * 67.200066f:0} m high): destroyed.");
+            return false;
+        }
 
         if (Plugin.VerboseLog.Value)
             Plugin.Log.LogInfo($"Sonobuoy: {carrier.getUIDAndName()} released {buoy.getUIDAndName()} on the spot at {GameTime.TimeCompression:0}x.");
