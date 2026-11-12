@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-12
+
+- Settings file moved from `MainMod.cfg` beside the dll to `BepInEx/config/local.mainmod.cfg`; an existing `MainMod.cfg` is moved there once at first start.
+- Game compatibility tag 0.9.1.
+
 ## Unreleased
 - Sonobuoys: an "Auto" attack waypoint (the game's new auto-attack, in the new-map release) is left to the game.
 - Sonobuoys: a buoy released on the spot over land is destroyed on the ground instead of deploying there.

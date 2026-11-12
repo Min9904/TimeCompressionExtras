@@ -70,7 +70,30 @@ internal static class Plugin
         }
     }
 
-    internal static string ConfigPath => Path.Combine(ModDirectory, ConfigFileName);
+    /// <summary>
+    /// Where a settings file lives: BepInEx/config/&lt;name&gt; (user 2026-11-12). Not beside the dll: for a Workshop player that is
+    /// Steam's own item folder, which a Workshop update can rewrite, and an uploaded copy would ship the uploader's settings.
+    /// An older file beside the dll (oldName) is moved over once, so nobody loses their settings.
+    /// </summary>
+    internal static string SettingsFile(string name, string oldName)
+    {
+        string path = Path.Combine(Paths.ConfigPath, name);
+        try
+        {
+            string old = Path.Combine(ModDirectory, oldName);
+            if (!File.Exists(path) && File.Exists(old))
+            {
+                Directory.CreateDirectory(Paths.ConfigPath);
+                File.Move(old, path);
+                Log?.LogInfo($"Settings moved from {old} to {path}");
+            }
+        }
+        catch (System.Exception e) { Log?.LogWarning($"Could not move {oldName} to BepInEx/config ({e.Message}); starting from {path}"); }
+        return path;
+    }
+
+    private static string _configPath;
+    internal static string ConfigPath => _configPath ??= SettingsFile(Entry.Guid + ".cfg", ConfigFileName);
 
     internal static void Init()
     {

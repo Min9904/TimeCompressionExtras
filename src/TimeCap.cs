@@ -53,7 +53,7 @@ internal static class GameTime_OnStart_Patch
                 AirOps.FlightDeckBaseLimit = _vanillaFlightDeck;
                 Plugin.Log.LogInfo(Plugin.Enabled.Value
                     ? "Time compression extras is not ticked in the Mods menu; nothing changed for this mission."
-                    : "Time compression extras is switched off in MainMod.cfg; nothing changed for this mission.");
+                    : "Time compression extras is switched off in BepInEx/config/local.mainmod.cfg; nothing changed for this mission.");
                 Performance.OnMissionStart();
                 return;
             }
